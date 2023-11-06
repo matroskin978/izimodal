@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iziModal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="iziModal.min.css">
+</head>
+
+<body>
+
+    <!-- https://izimodal.marcelodolza.com -->
+
+    <ul>
+        <li><a href="#" class="trigger">Modal</a></li>
+        <li><a href="#" data-izimodal-open="#modal">Modal</a></li>
+    </ul>
+
+    <div id="modal">
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus assumenda, doloribus quod repudiandae
+            obcaecati odio deleniti fugiat ducimus repellendus, rem perspiciatis, doloremque dolorum voluptatum iure
+            iusto corrupti expedita eos autem.</p>
+        <button data-izimodal-close="" data-izimodal-transitionout="bounceOutDown">Close</button>
+    </div>
+
+    <div id="alert-success" class="alert" data-izimodal-title="Success" data-izimodal-icon="fa-regular fa-circle-check"
+        data-izimodal-headerColor="#00af66"></div>
+
+    <div id="alert-error" class="alert" data-izimodal-title="Error" data-izimodal-icon="fa-solid fa-circle-exclamation"
+        data-izimodal-headerColor="#BD5B5B"></div>
+
+
+    <button class="open-success trigger-alert">Success</button>
+    <button class="open-error trigger-alert">Error</button>
+
+
+    <script src="jquery.min.js"></script>
+    <script src="iziModal.min.js"></script>
+    <script>
+        $(".alert").iziModal({
+            width: 600,
+            timeout: 3000,
+            timeoutProgressbar: true,
+            transitionIn: 'fadeInDown',
+            transitionOut: 'fadeOutUp',
+            top: 0,
+            loop: true,
+            pauseOnHover: true
+        });
+        $(document).on('click', '.open-success', function (event) {
+            event.preventDefault();
+            $('#alert-success').iziModal('open');
+        });
+        $(document).on('click', '.open-error', function (event) {
+            event.preventDefault();
+            $('#alert-error').iziModal('open');
+        });
+
+
+        $("#modal").iziModal({
+            title: 'Cart title',
+            headerColor: '#42a5f5',
+            icon: 'fa-solid fa-cart-shopping',
+            width: 800,
+            padding: 20,
+            // iframe: true,
+            // iframeURL: 'https://izimodal.marcelodolza.com/',
+            autoOpen: false,
+            fullscreen: true,
+            overlayClose: false,
+            transitionIn: 'fadeInDown',
+            transitionOut: 'fadeOutUp'
+        });
+        $('.trigger').click(function (e) {
+            e.preventDefault();
+            $("#modal").iziModal('open');
+        });
+    </script>
+</body>
+
+</html>
